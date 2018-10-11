@@ -149,7 +149,51 @@ output reg[0:31] w
     $display("Test Case 2 Failed");
   end
 
+//Test Case 3: 
+  //   Write '15' to register 2, verify with Read Ports 1 and 2
+  //   (Fails with example register file, but should pass with yours)
+  WriteRegister = 5'd2;
+  WriteData = 32'd15;
+  RegWrite = 0;//regwrite will be zero and if the read register still equals what was trying to be written then it catches the erorr
+  ReadRegister1 = 5'd2;
+  ReadRegister2 = 5'd2;
+  #5 Clk=1; #5 Clk=0;
 
+  if((ReadData1 !== 15) || (ReadData2 !== 15)) begin
+    dutpassed = 0;
+    $display("Enable doesn't work");
+  end
+
+//Test Case 4: 
+  //   Write '15' to register 2, verify register 3 and 4 with Read Ports 1 and 2
+
+  WriteRegister = 5'd2;
+  WriteData = 32'd15;
+  RegWrite = 1;
+  ReadRegister1 = 5'd3;//Writes to register 2 but checks register 4&5
+  ReadRegister2 = 5'd4;
+  #5 Clk=1; #5 Clk=0;
+
+  if((ReadData1 == 15) && (ReadData2 == 15)) begin
+    dutpassed = 0;
+    $display("ALl your registers are being written to");
+
+  end
+
+//Test Case 5: 
+  //   Write '15' to register 2, verify register 3 and 4 with Read Ports 1 and 2
+
+  WriteRegister = 5'd14;
+  WriteData = 32'd15;
+  RegWrite = 1;
+  ReadRegister1 = 5'd3;//Writes to register 14 and has port 2 check other register(4) and see if the values are the same
+  ReadRegister2 = 5'd4;
+  #5 Clk=1; #5 Clk=0;
+
+  if((ReadData2 == 15)) begin
+    dutpassed = 0;
+    $display("Your port 2 is only  reading register 14");
+  end
   // All done!  Wait a moment and signal test completion.
   #5
   endtest = 1;
