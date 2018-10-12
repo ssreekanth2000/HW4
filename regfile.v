@@ -6,6 +6,7 @@
 //   1 synchronous, positive edge triggered write port
 //------------------------------------------------------------------------------
 `include "reg32.v"
+`include "reg32zero.v"
 `include "decoder1to32.v"
 `include "32multiplexer32.v"
 module regfile
@@ -29,8 +30,9 @@ input		Clk		// Clock (Positive Edge Triggered)
   wire [31:0] w;
   decoder1to32
     d0(w,RegWrite,WriteRegister);
+  reg32zero
+    r0(int0,WriteData,w[0],Clk);
   reg32
-    r0(int0,WriteData,w[0],Clk),
     r1(int1,WriteData,w[1],Clk),
     r2(int2,WriteData,w[2],Clk),
     r3(int3,WriteData,w[3],Clk),

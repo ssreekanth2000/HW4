@@ -179,8 +179,26 @@ output reg[0:31] w
     $display("ALl your registers are being written to");
 
   end
-
 //Test Case 5: 
+//Read reg 0 and check if its not zer0
+
+  WriteRegister = 5'd14;
+  WriteData = 32'd15;
+  RegWrite = 1;
+  ReadRegister1 = 5'd0;//Writes to register 14 and has port 2 check other register(4) and see if the values are the same
+  ReadRegister2 = 5'd4;
+  #5 Clk=1; #5 Clk=0;
+
+  if((ReadData1 !== 0)) begin
+    dutpassed = 0;
+    $display("Your first register is not zero");
+  end
+  // All done!  Wait a moment and signal test completion.
+  #5
+  endtest = 1;
+
+
+//Test Case 6: 
   //   Write '15' to register 2, verify register 3 and 4 with Read Ports 1 and 2
 
   WriteRegister = 5'd14;
