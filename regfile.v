@@ -26,7 +26,7 @@ input		Clk		// Clock (Positive Edge Triggered)
   
 
   wire[0:31] int0,int1,int2,int3,int4,int5,int6,int7,int8,int9,int10,int11,int12,int13,int14,int15,int16,int17,int18,int19,int20,int21,int22,int23,int24,int25,int26,int27,int28,int29,int30,int31;
-  wire [0:31] w;
+  wire [31:0] w;
   decoder1to32
     d0(w,RegWrite,WriteRegister);
   reg32

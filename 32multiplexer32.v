@@ -9,7 +9,7 @@ module mux32to1by1(
   reg[31:0] out;
 
 
-    always @(address)
+    always @(address or input0 or input1 or input2 or input3 or input4 or input5 or input6 or input7 or input8 or input9 or input10 or input11 or input12 or input13 or input14 or input15 or input16 or input17 or input18 or input19 or input20 or input21 or input22 or input23 or input24 or input25 or input26 or input27 or input28 or input29 or input30 or input31)
     case ( address )
        5'b00000: out = input0;
        5'b00001: out = input1;

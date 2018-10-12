@@ -125,7 +125,7 @@ output reg[0:31] w
   if((ReadData1 !== 42) || (ReadData2 !== 42)) begin
     dutpassed = 0;	// Set to 'false' on failure
     $display("Test Case 1 Failed");
-    $display("%b %b |  %b  %b |    %b  ", WriteData,w, ReadRegister1, ReadData1, WriteRegister);
+    //$display("%b %b |  %b  %b |    %b  ", WriteData,w, ReadRegister1, ReadData1, WriteRegister);
   end
  // initial begin
    // $display("r1 r2 | rr1 wd | wr ");            // Prints header for truth table
